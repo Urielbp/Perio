@@ -1,0 +1,7 @@
+included:
+  - Perio/Sources/**
+  - Modules/Perio*/Sources/**
+
+excluded:
+  - Derived/**
+  - Tuist/**
