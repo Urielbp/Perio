@@ -31,8 +31,10 @@ func makeModule(
             name: name,
             destinations: .iOS,
             product: .framework,
-            bundleId: "com.perio.\(name.lowercased())",
+            bundleId: "com.arousal.bribe.perio.\(name.lowercased())",
+            deploymentTargets: .iOS("16.0"),
             sources: ["Modules/\(name)/Sources/**"],
+            resources: ["Modules/\(name)/Resources/**"],
             dependencies: dependencies
         )
     ]
@@ -69,9 +71,13 @@ let moduleTargets: [Target] = [
     makeModule(
         name: "PerioPresentation",
         dependencies: [
-            .target(name: "PerioDomain")
+            .target(name: "PerioDomain"),
+            .target(name: "PerioDesignSystem")
         ],
         hasTests: false),
+    makeModule(
+        name: "PerioDesignSystem",
+        hasTests: false)
 ].flatMap { $0 }
 
 // MARK: - App Target
@@ -80,10 +86,15 @@ let appTarget: Target = .target(
     name: "Perio",
     destinations: .iOS,
     product: .app,
-    bundleId: "com.perio.app",
+    bundleId: "com.arousal.bribe.perio",
+    deploymentTargets: .iOS("16.0"),
     infoPlist: .extendingDefault(with: [
         "CFBundleDisplayName": "Perio",
         "UILaunchScreen": [:],
+        "UIAppFonts":[
+            "Manrope-VariableFont_wght.ttf",
+            "SpaceGrotesk-VariableFont_wght.ttf"
+        ]
     ]),
     sources: ["Perio/Sources/**"],
     resources: ["Perio/Resources/**"],
@@ -91,7 +102,8 @@ let appTarget: Target = .target(
     dependencies: [
         .target(name: "PerioDomain"),
         .target(name: "PerioData"),
-        .target(name: "PerioPresentation")
+        .target(name: "PerioPresentation"),
+        .target(name: "PerioDesignSystem")
     ]
 )
 
@@ -101,7 +113,8 @@ let testTarget: Target = .target(
     name: "PerioTests",
     destinations: .iOS,
     product: .unitTests,
-    bundleId: "com.arousal.bribe.PerioTests",
+    bundleId: "com.arousal.bribe.perioTests",
+    deploymentTargets: .iOS("16.0"),
     infoPlist: .default,
     sources: ["Perio/Tests/**"],
     resources: [],

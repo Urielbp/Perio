@@ -1,0 +1,24 @@
+/* 
+  Strings.strings
+  Perio
+
+  Created by Uriel Barbosa Pinheiro on 16/04/26.
+  
+*/
+
+"settings.title" = "Settings";
+"settings.profile.title" = "PROFILE";
+"settings.profile.cta" = "tap to change your name";
+"settings.notifications.title" = "NOTIFICATIONS";
+"settings.notifications.daily_reminders" = "Daily reminders";
+"settings.notifications.default_time" = "Default time";
+"settings.notifications.default_value" = "7:00 am";
+"settings.visual_identity.title" = "VISUAL IDENTITY";
+"settings.visual_identity.appearence.title" = "Appearance";
+"settings.visual_identity.appearence.system" = "System";
+"settings.visual_identity.appearence.light_mode" = "Light mode";
+"settings.visual_identity.appearence.dark_mode" = "Dark mode";
+"settings.visual_identity.app_icon" = "App icon";
+"settings.data_and_privacy.title" = "DATA AND PRIVACY";
+"settings.data_and_privacy.export" = "Export";
+"settings.data_and_privacy.reset" = "Reset";
