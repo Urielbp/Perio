@@ -1,6 +1,8 @@
 // Project.swift
 import ProjectDescription
 
+let iOSDeploymentVersion = "17.0"
+
 // MARK: - SwiftLint
 
 let swiftLintScript: TargetScript = .pre(
@@ -32,7 +34,7 @@ func makeModule(
             destinations: .iOS,
             product: .framework,
             bundleId: "com.arousal.bribe.perio.\(name.lowercased())",
-            deploymentTargets: .iOS("16.0"),
+            deploymentTargets: .iOS(iOSDeploymentVersion),
             sources: ["Modules/\(name)/Sources/**"],
             resources: ["Modules/\(name)/Resources/**"],
             dependencies: dependencies
@@ -87,13 +89,14 @@ let appTarget: Target = .target(
     destinations: .iOS,
     product: .app,
     bundleId: "com.arousal.bribe.perio",
-    deploymentTargets: .iOS("16.0"),
+    deploymentTargets: .iOS(iOSDeploymentVersion),
     infoPlist: .extendingDefault(with: [
         "CFBundleDisplayName": "Perio",
         "UILaunchScreen": [:],
         "UIAppFonts":[
             "Manrope-VariableFont_wght.ttf",
-            "SpaceGrotesk-VariableFont_wght.ttf"
+            "Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf",
+            "Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf"
         ]
     ]),
     sources: ["Perio/Sources/**"],
@@ -114,7 +117,7 @@ let testTarget: Target = .target(
     destinations: .iOS,
     product: .unitTests,
     bundleId: "com.arousal.bribe.perioTests",
-    deploymentTargets: .iOS("16.0"),
+    deploymentTargets: .iOS(iOSDeploymentVersion),
     infoPlist: .default,
     sources: ["Perio/Tests/**"],
     resources: [],

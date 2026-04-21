@@ -12,16 +12,26 @@ struct VisualIdentitySectionView: View {
 
     private let internalPadding: CGFloat = 16
     private let dividerHeight: CGFloat = 0.5 // TODO: put on the DS
+    @State private var appearenceModalShown: Bool = false
+
+    var viewModel: any VisualIdentityViewModel
 
     var body: some View {
         ZStack {
             CardView()
             VStack {
                 ActionableListItem.text(title: PerioPresentationStrings.Settings.VisualIdentity.Appearence.title,
-                                        action: {},
+                                        action: didTapChangeAppearence,
                                         icon: PerioDesignSystemAsset.Icons.moon,
                                         iconColor: PerioDesignSystemAsset.Habit.slate,
-                                        trailingText: PerioPresentationStrings.Settings.VisualIdentity.Appearence.system)
+                                        trailingText: viewModel.currentAppearanceText)
+                .confirmationDialog(PerioPresentationStrings.Settings.VisualIdentity.Appearence.title, isPresented: $appearenceModalShown) {
+                    ForEach(viewModel.appearenceOptions, id: \.mode) { (label, mode) in
+                        Button(label) {
+                            viewModel.selectAppearence(mode)
+                        }
+                    }
+                }
                 Divider()
                     .foregroundStyle(PerioDesignSystemAsset.Foundation.hairline.swiftUIColor)
                     .frame(height: dividerHeight)
@@ -34,11 +44,15 @@ struct VisualIdentitySectionView: View {
         }
     }
 
-    func didChangeColor(index: Int) {
+    func didTapChangeAppearence() {
+        appearenceModalShown = true
+    }
 
+    init(viewModel: any VisualIdentityViewModel) {
+        self.viewModel = viewModel
     }
 }
 
 #Preview {
-    VisualIdentitySectionView()
+    VisualIdentitySectionView(viewModel: StubVisualIdentityViewModel())
 }
