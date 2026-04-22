@@ -7,16 +7,7 @@
 
 import SwiftUI
 import PerioDomain
-
-extension AppearanceMode {
-    var colorScheme: ColorScheme? {
-        switch self {
-        case .systemSelected: nil
-        case .lightMode: .light
-        case .darkMode: .dark
-        }
-    }
-}
+import Combine
 
 @MainActor
 public protocol VisualIdentityViewModel: Observable {
@@ -31,7 +22,13 @@ public protocol VisualIdentityViewModel: Observable {
 @MainActor
 final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
 
-    private let setAppearenceUseCase: SetAppearenceModeUseCase
+    // MARK: - Private properties
+
+    private let setAppearenceUseCase: SetAppearanceModeUseCase
+    private let getAppearenceUseCase: GetAppearanceModeUseCase
+    private var getAppearanceCancellable: AnyCancellable?
+
+    // MARK: - Public properties
 
     public var currentAppearance: AppearanceMode = .systemSelected
 
@@ -54,13 +51,31 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
         ]
     }
 
+    // MARK: - Init
+
+    public init(
+        setAppearenceUseCase: SetAppearanceModeUseCase,
+        getAppearenceUseCase: GetAppearanceModeUseCase
+    ) {
+        self.setAppearenceUseCase = setAppearenceUseCase
+        self.getAppearenceUseCase = getAppearenceUseCase
+
+        setupSink()
+    }
+
+    // MARK: - Public functions
+
     public func selectAppearence(_ mode: PerioDomain.AppearanceMode) {
-        currentAppearance = mode
         setAppearenceUseCase.invoke(mode)
     }
 
-    public init(setAppearenceUseCase: SetAppearenceModeUseCase) {
-        self.setAppearenceUseCase = setAppearenceUseCase
-    }
+    // MARK: - Private functions
 
+    private func setupSink() {
+        getAppearanceCancellable = getAppearenceUseCase.invoke()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] mode in
+                self?.currentAppearance = mode
+            }
+    }
 }

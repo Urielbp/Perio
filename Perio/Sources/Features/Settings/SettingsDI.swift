@@ -12,16 +12,16 @@ import PerioPresentation
 @MainActor
 struct SettingsDI {
     static func register() {
-        DIRegistry.shared.bind(service: KeyValueStore.self) { _ in
-            UserDefaultsKeyValueStore()
-        }
-
         DIRegistry.shared.bind(service: AppearanceRepository.self) { resolver in
             UserDefaultsAppearenceRepository(store: resolver.resolve(KeyValueStore.self))
         }
 
-        DIRegistry.shared.bind(service: SetAppearenceModeUseCase.self) { resolver in
-            SetAppearenceModeUseCaseImpl(repository: resolver.resolve(AppearanceRepository.self))
+        DIRegistry.shared.bind(service: SetAppearanceModeUseCase.self) { resolver in
+            SetAppearanceModeUseCaseImpl(repository: resolver.resolve(AppearanceRepository.self))
+        }
+
+        DIRegistry.shared.bind(service: GetAppearanceModeUseCase.self) { resolver in
+            GetAppearanceModeUseCaseImpl(repository: resolver.resolve(AppearanceRepository.self))
         }
     }
 }

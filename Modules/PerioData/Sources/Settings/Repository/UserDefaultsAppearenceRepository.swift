@@ -22,18 +22,10 @@ public final class UserDefaultsAppearenceRepository: AppearanceRepository {
         subject.send(mode)
     }
 
-    public func observeMode() -> AsyncStream<AppearanceMode> {
-        let publisher = subject.removeDuplicates()
-        return AsyncStream { continuation in
-            let cancellable = publisher.sink { _ in
-                continuation.finish()
-            } receiveValue: { mode in
-                continuation.yield(mode)
-            }
-            continuation.onTermination = { _ in
-                cancellable.cancel()
-            }
-        }
+    public func observeMode() -> AnyPublisher<AppearanceMode, Never> {
+        subject
+            .removeDuplicates()
+            .eraseToAnyPublisher()
     }
 
     public init(store: KeyValueStore) {
