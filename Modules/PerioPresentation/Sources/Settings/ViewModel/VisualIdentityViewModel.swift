@@ -13,9 +13,9 @@ import Combine
 public protocol VisualIdentityViewModel: Observable {
     var currentAppearance: AppearanceMode { get }
     var currentAppearanceText: String { get }
-    var appearenceOptions: [(label: String, mode: AppearanceMode)] { get }
+    var appearanceOptions: [(label: String, mode: AppearanceMode)] { get }
 
-    func selectAppearence(_ mode: AppearanceMode)
+    func selectAppearance(_ mode: AppearanceMode)
 }
 
 @Observable
@@ -24,8 +24,8 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
 
     // MARK: - Private properties
 
-    private let setAppearenceUseCase: SetAppearanceModeUseCase
-    private let getAppearenceUseCase: GetAppearanceModeUseCase
+    private let setAppearanceUseCase: SetAppearanceModeUseCase
+    private let getAppearanceUseCase: GetAppearanceModeUseCase
     private var getAppearanceCancellable: AnyCancellable?
 
     // MARK: - Public properties
@@ -35,44 +35,44 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
     public var currentAppearanceText: String {
         switch currentAppearance {
         case .systemSelected:
-            PerioPresentationStrings.Settings.VisualIdentity.Appearence.system
+            PerioPresentationStrings.Settings.VisualIdentity.Appearance.system
         case .darkMode:
-            PerioPresentationStrings.Settings.VisualIdentity.Appearence.darkMode
+            PerioPresentationStrings.Settings.VisualIdentity.Appearance.darkMode
         case .lightMode:
-            PerioPresentationStrings.Settings.VisualIdentity.Appearence.lightMode
+            PerioPresentationStrings.Settings.VisualIdentity.Appearance.lightMode
         }
     }
 
-    public var appearenceOptions: [(label: String, mode: AppearanceMode)] {
+    public var appearanceOptions: [(label: String, mode: AppearanceMode)] {
         [
-            (PerioPresentationStrings.Settings.VisualIdentity.Appearence.system, .systemSelected),
-            (PerioPresentationStrings.Settings.VisualIdentity.Appearence.darkMode, .darkMode),
-            (PerioPresentationStrings.Settings.VisualIdentity.Appearence.lightMode, .lightMode)
+            (PerioPresentationStrings.Settings.VisualIdentity.Appearance.system, .systemSelected),
+            (PerioPresentationStrings.Settings.VisualIdentity.Appearance.darkMode, .darkMode),
+            (PerioPresentationStrings.Settings.VisualIdentity.Appearance.lightMode, .lightMode)
         ]
     }
 
     // MARK: - Init
 
     public init(
-        setAppearenceUseCase: SetAppearanceModeUseCase,
-        getAppearenceUseCase: GetAppearanceModeUseCase
+        setAppearanceUseCase: SetAppearanceModeUseCase,
+        getAppearanceUseCase: GetAppearanceModeUseCase
     ) {
-        self.setAppearenceUseCase = setAppearenceUseCase
-        self.getAppearenceUseCase = getAppearenceUseCase
+        self.setAppearanceUseCase = setAppearanceUseCase
+        self.getAppearanceUseCase = getAppearanceUseCase
 
         setupSink()
     }
 
     // MARK: - Public functions
 
-    public func selectAppearence(_ mode: PerioDomain.AppearanceMode) {
-        setAppearenceUseCase.invoke(mode)
+    public func selectAppearance(_ mode: PerioDomain.AppearanceMode) {
+        setAppearanceUseCase.invoke(mode)
     }
 
     // MARK: - Private functions
 
     private func setupSink() {
-        getAppearanceCancellable = getAppearenceUseCase.invoke()
+        getAppearanceCancellable = getAppearanceUseCase.invoke()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] mode in
                 self?.currentAppearance = mode

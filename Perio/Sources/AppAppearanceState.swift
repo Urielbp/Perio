@@ -1,5 +1,5 @@
 //
-//  AppAppearenceState.swift
+//  AppAppearanceState.swift
 //  Perio
 //
 //  Created by Uriel Barbosa Pinheiro on 21/04/26.

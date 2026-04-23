@@ -13,7 +13,7 @@ import PerioPresentation
 struct SettingsDI {
     static func register() {
         DIRegistry.shared.bind(service: AppearanceRepository.self) { resolver in
-            UserDefaultsAppearenceRepository(store: resolver.resolve(KeyValueStore.self))
+            UserDefaultsAppearanceRepository(store: resolver.resolve(KeyValueStore.self))
         }
 
         DIRegistry.shared.bind(service: SetAppearanceModeUseCase.self) { resolver in

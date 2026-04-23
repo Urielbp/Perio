@@ -12,7 +12,7 @@ struct VisualIdentitySectionView: View {
 
     private let internalPadding: CGFloat = 16
     private let dividerHeight: CGFloat = 0.5 // TODO: put on the DS
-    @State private var appearenceModalShown: Bool = false
+    @State private var appearanceModalShown: Bool = false
 
     var viewModel: any VisualIdentityViewModel
 
@@ -20,15 +20,15 @@ struct VisualIdentitySectionView: View {
         ZStack {
             CardView()
             VStack {
-                ActionableListItem.text(title: PerioPresentationStrings.Settings.VisualIdentity.Appearence.title,
-                                        action: didTapChangeAppearence,
+                ActionableListItem.text(title: PerioPresentationStrings.Settings.VisualIdentity.Appearance.title,
+                                        action: didTapChangeAppearance,
                                         icon: PerioDesignSystemAsset.Icons.moon,
                                         iconColor: PerioDesignSystemAsset.Habit.slate,
                                         trailingText: viewModel.currentAppearanceText)
-                .confirmationDialog(PerioPresentationStrings.Settings.VisualIdentity.Appearence.title, isPresented: $appearenceModalShown) {
-                    ForEach(viewModel.appearenceOptions, id: \.mode) { (label, mode) in
+                .confirmationDialog(PerioPresentationStrings.Settings.VisualIdentity.Appearance.title, isPresented: $appearanceModalShown) {
+                    ForEach(viewModel.appearanceOptions, id: \.mode) { (label, mode) in
                         Button(label) {
-                            viewModel.selectAppearence(mode)
+                            viewModel.selectAppearance(mode)
                         }
                     }
                 }
@@ -44,8 +44,8 @@ struct VisualIdentitySectionView: View {
         }
     }
 
-    func didTapChangeAppearence() {
-        appearenceModalShown = true
+    func didTapChangeAppearance() {
+        appearanceModalShown = true
     }
 
     init(viewModel: any VisualIdentityViewModel) {

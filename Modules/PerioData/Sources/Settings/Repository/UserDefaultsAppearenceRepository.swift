@@ -1,5 +1,5 @@
 //
-//  UserDefaultsAppearenceRepository.swift
+//  UserDefaultsAppearanceRepository.swift
 //  Perio
 //
 //  Created by Uriel Barbosa Pinheiro on 21/04/26.
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import PerioDomain
 
-public final class UserDefaultsAppearenceRepository: AppearanceRepository {
+public final class UserDefaultsAppearanceRepository: AppearanceRepository {
     private let store: KeyValueStore
     private let subject: CurrentValueSubject<AppearanceMode, Never>
 

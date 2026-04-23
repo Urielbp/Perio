@@ -16,14 +16,14 @@ final class StubVisualIdentityViewModel: VisualIdentityViewModel {
 
     let currentAppearanceText: String = "Dark mode"
 
-    let appearenceOptions: [(label: String, mode: AppearanceMode)] =
+    let appearanceOptions: [(label: String, mode: AppearanceMode)] =
     [
         ("System", .systemSelected),
         ("Dark mode", .darkMode),
         ("Light mode", .lightMode)
     ]
     
-    func selectAppearence(_ mode: AppearanceMode) {
+    func selectAppearance(_ mode: AppearanceMode) {
         return
     }
 

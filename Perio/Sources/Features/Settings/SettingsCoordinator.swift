@@ -13,8 +13,8 @@ import SwiftUI
 final class SettingsCoordinator {
     static func makeSettingsView() -> some View {
         let visualIdentityViewModel = VisualIdentityViewModelImpl(
-            setAppearenceUseCase: DIRegistry.shared.resolve(SetAppearanceModeUseCase.self),
-            getAppearenceUseCase: DIRegistry.shared.resolve(GetAppearanceModeUseCase.self)
+            setAppearanceUseCase: DIRegistry.shared.resolve(SetAppearanceModeUseCase.self),
+            getAppearanceUseCase: DIRegistry.shared.resolve(GetAppearanceModeUseCase.self)
         )
         return SettingsView(visualIdentityViewModel: visualIdentityViewModel)
     }

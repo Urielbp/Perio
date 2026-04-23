@@ -14,10 +14,10 @@
 "settings.notifications.default_time" = "Default time";
 "settings.notifications.default_value" = "7:00 am";
 "settings.visual_identity.title" = "VISUAL IDENTITY";
-"settings.visual_identity.appearence.title" = "Appearance";
-"settings.visual_identity.appearence.system" = "System";
-"settings.visual_identity.appearence.light_mode" = "Light mode";
-"settings.visual_identity.appearence.dark_mode" = "Dark mode";
+"settings.visual_identity.appearance.title" = "Appearance";
+"settings.visual_identity.appearance.system" = "System";
+"settings.visual_identity.appearance.light_mode" = "Light mode";
+"settings.visual_identity.appearance.dark_mode" = "Dark mode";
 "settings.visual_identity.app_icon" = "App icon";
 "settings.data_and_privacy.title" = "DATA AND PRIVACY";
 "settings.data_and_privacy.export" = "Export";
