@@ -24,7 +24,11 @@ final class StubVisualIdentityViewModel: VisualIdentityViewModel {
     ]
     
     func selectAppearance(_ mode: AppearanceMode) {
-        return
+        
+    }
+
+    func observeAppearence() async {
+
     }
 
     init() {

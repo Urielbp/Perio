@@ -42,6 +42,9 @@ struct VisualIdentitySectionView: View {
             }
             .padding(.all, internalPadding)
         }
+        .task {
+            await viewModel.observeAppearence()
+        }
     }
 
     func didTapChangeAppearance() {

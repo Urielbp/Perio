@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PerioDomain
-import Combine
 
 @MainActor
 public protocol VisualIdentityViewModel: Observable {
@@ -16,6 +15,7 @@ public protocol VisualIdentityViewModel: Observable {
     var appearanceOptions: [(label: String, mode: AppearanceMode)] { get }
 
     func selectAppearance(_ mode: AppearanceMode)
+    func observeAppearence() async
 }
 
 @Observable
@@ -26,7 +26,6 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
 
     private let setAppearanceUseCase: SetAppearanceModeUseCase
     private let getAppearanceUseCase: GetAppearanceModeUseCase
-    private var getAppearanceCancellable: AnyCancellable?
 
     // MARK: - Public properties
 
@@ -60,7 +59,6 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
         self.setAppearanceUseCase = setAppearanceUseCase
         self.getAppearanceUseCase = getAppearanceUseCase
 
-        setupSink()
     }
 
     // MARK: - Public functions
@@ -69,13 +67,9 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
         setAppearanceUseCase.invoke(mode)
     }
 
-    // MARK: - Private functions
-
-    private func setupSink() {
-        getAppearanceCancellable = getAppearanceUseCase.invoke()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] mode in
-                self?.currentAppearance = mode
-            }
+    public func observeAppearence() async {
+        for await mode in getAppearanceUseCase.invoke() {
+            currentAppearance = mode
+        }
     }
 }

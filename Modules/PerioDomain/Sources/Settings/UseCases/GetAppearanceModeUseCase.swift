@@ -5,12 +5,10 @@
 //  Created by Uriel Barbosa Pinheiro on 21/04/26.
 //
 
-import Combine
-
 public protocol GetAppearanceModeUseCase {
     var repository: any AppearanceRepository { get }
 
-    func invoke() -> AnyPublisher<AppearanceMode, Never>
+    func invoke() -> AsyncStream<AppearanceMode>
 }
 
 public class GetAppearanceModeUseCaseImpl: GetAppearanceModeUseCase {
@@ -21,7 +19,7 @@ public class GetAppearanceModeUseCaseImpl: GetAppearanceModeUseCase {
         self.repository = repository
     }
 
-    public func invoke() -> AnyPublisher<AppearanceMode, Never> {
+    public func invoke() -> AsyncStream<AppearanceMode> {
         repository.observeMode()
     }
 }

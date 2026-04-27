@@ -4,18 +4,26 @@ import SwiftUI
 
 @main
 struct PerioApp: App {
-    let appearanceState: AppAppearanceState
+    @State var currentMode: AppearanceMode = .systemSelected
 
     init() {
         AppDI.registerAll()
+    }
+
+    private func setupAppearanceModeUse() async {
         let useCase = DIRegistry.shared.resolve(GetAppearanceModeUseCase.self)
-        appearanceState = AppAppearanceState(getAppearanceUseCase: useCase)
+        for await mode in useCase.invoke() {
+            currentMode = mode
+        }
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(appearanceState.currentMode.colorScheme)
+                .preferredColorScheme(currentMode.colorScheme)
+                .task {
+                    await setupAppearanceModeUse()
+                }
         }
     }
 }
