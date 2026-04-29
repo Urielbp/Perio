@@ -10,6 +10,15 @@
 
 Most habit trackers punish you for missing a day. Perio takes a different approach: it's a buddy, not a coach. Miss a day? That's fine — life happens. The schedule stays anchored to the calendar, not to your last completion. Open the app after a long day and it gently shows you what's on your plate, what you've done, and what can wait.
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/images/onboarding-light.png" width="250" alt="Onboarding screen on light mode"/>
+  <img src="docs/images/onboarding-dark.png" width="250" alt="Onboarding screen on dark mode"/>
+  <img src="docs/images/settings-light.png" width="250" alt="Settings screen on light mode"/>
+  <img src="docs/images/settings-dark.png" width="250" alt="Settings screen on dark mode"/>
+</p>
+
 ---
 
 ## Architecture
