@@ -78,8 +78,8 @@ public struct ActionableListItem<RightContent: View>: View {
         )
         ActionableListItem.text(
             title: "Dark mode",
-            action: {}, icon:
-                PerioDesignSystemAsset.Icons.moon,
+            action: {},
+            icon: PerioDesignSystemAsset.Icons.moon,
             iconColor: PerioDesignSystemAsset.Habit.rose,
             trailingText: "System")
     }

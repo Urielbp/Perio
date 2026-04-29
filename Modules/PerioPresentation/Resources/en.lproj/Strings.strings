@@ -6,6 +6,16 @@
   
 */
 
+// MARK: - Onboarding
+
+"onboarding.title" = "Hi there.\nWhat should we call you?";
+"onboarding.subtitle" = "Just a first name is plenty - we'll use it for your morning greeting. You can change it any time.";
+"onboarding.textfield.title" = "YOUR NAME";
+"onboarding.main_button" = "Continue";
+"onboarding.secondary_button" = "Skip for now";
+
+// MARK: - Setttings
+
 "settings.title" = "Settings";
 "settings.profile.title" = "PROFILE";
 "settings.profile.cta" = "tap to change your name";

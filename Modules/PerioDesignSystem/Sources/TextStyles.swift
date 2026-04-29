@@ -82,6 +82,12 @@ extension Text {
     }
 }
 
+extension TextField {
+    public func titleStyle() -> some View {
+        modifier(Title())
+    }
+}
+
 extension Text {
     public func sheetTitleStyle() -> some View {
         modifier(SheetTitle())
