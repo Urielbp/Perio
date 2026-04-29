@@ -20,6 +20,7 @@ public struct TextfieldView: View {
             TextField(String(), text: $text)
                 .titleStyle()
                 .foregroundStyle(PerioDesignSystemAsset.Text.ink.swiftUIColor)
+                .tint(PerioDesignSystemAsset.Text.ink.swiftUIColor)
             Divider()
                 .frame(height: dividerHeight)
                 .overlay(PerioDesignSystemAsset.Habit.sage.swiftUIColor)
