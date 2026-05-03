@@ -34,7 +34,7 @@ public struct OnboardingView: View {
                            startRadius: radiusStartSize,
                            endRadius: radiusEndSize)
             .ignoresSafeArea(.all)
-            VStack(alignment: .leading, spacing: verticalSpacing) {
+            VStack(alignment: .leading) {
                 Spacer()
                     .frame(maxWidth: .infinity)
                     .frame(height: topSpacing)
@@ -51,6 +51,9 @@ public struct OnboardingView: View {
                 Text(PerioPresentationStrings.Onboarding.title)
                     .titleStyle()
                     .lineSpacing(lineSpacing)
+                Spacer()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: verticalSpacing)
                 Text(PerioPresentationStrings.Onboarding.subtitle)
                     .bodyDescriptionStyle()
                     .lineSpacing(lineSpacing)
