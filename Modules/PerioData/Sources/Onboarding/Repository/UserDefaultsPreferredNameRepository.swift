@@ -15,8 +15,7 @@ public final class UserDefaultsPreferredNameRepository: PreferredNameRepository 
     private var continuations: [UUID: AsyncStream<String>.Continuation] = [:]
 
     public func setName(_ name: String) {
-        print("saved name \(name)")
-//        store.set(name, for: storeKey)
+        store.set(name, for: storeKey)
         for continuation in continuations.values {
             continuation.yield(name)
         }
