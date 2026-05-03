@@ -10,11 +10,14 @@ import PerioDesignSystem
 
 struct VisualIdentitySectionView: View {
 
+    // MARK: - Private properties
+
     private let internalPadding: CGFloat = 16
     private let dividerHeight: CGFloat = 0.5 // TODO: put on the DS
     @State private var appearanceModalShown: Bool = false
+    private var viewModel: any VisualIdentityViewModel
 
-    var viewModel: any VisualIdentityViewModel
+    // MARK: - Internal properties
 
     var body: some View {
         ZStack {
@@ -47,14 +50,20 @@ struct VisualIdentitySectionView: View {
         }
     }
 
-    func didTapChangeAppearance() {
+    // MARK: - Private functions
+
+    private func didTapChangeAppearance() {
         appearanceModalShown = true
     }
+
+    // MARK: - Init
 
     init(viewModel: any VisualIdentityViewModel) {
         self.viewModel = viewModel
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     VisualIdentitySectionView(viewModel: StubVisualIdentityViewModel())

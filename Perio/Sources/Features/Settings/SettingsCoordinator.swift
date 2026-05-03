@@ -16,6 +16,10 @@ final class SettingsCoordinator {
             setAppearanceUseCase: DIRegistry.shared.resolve(SetAppearanceModeUseCase.self),
             getAppearanceUseCase: DIRegistry.shared.resolve(GetAppearanceModeUseCase.self)
         )
-        return SettingsView(visualIdentityViewModel: visualIdentityViewModel)
+        let profileViewModel = ProfileViewModelImpl(
+            getPreferredNameUseCase: DIRegistry.shared.resolve(GetPreferredNameUseCase.self))
+
+        return SettingsView(visualIdentityViewModel: visualIdentityViewModel,
+                            profileViewModel: profileViewModel)
     }
 }

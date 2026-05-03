@@ -19,6 +19,8 @@
 "settings.title" = "Settings";
 "settings.profile.title" = "PROFILE";
 "settings.profile.cta" = "tap to change your name";
+"settings.profile.no_name" = "Hi there";
+"settings.profile.no_name_cta" = "tap to add your name";
 "settings.notifications.title" = "NOTIFICATIONS";
 "settings.notifications.daily_reminders" = "Daily reminders";
 "settings.notifications.default_time" = "Default time";

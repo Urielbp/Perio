@@ -10,6 +10,8 @@ import PerioDesignSystem
 
 struct ProfileSectionView: View {
 
+    // MARK: - Private properties
+
     private let horizontalSpacing: CGFloat = 16
     private let profileColor: Color = PerioDesignSystemAsset.Habit.sage.swiftUIColor
     private let profileBorderWidth: CGFloat = 1.4
@@ -17,6 +19,9 @@ struct ProfileSectionView: View {
     private let profileImageSize: CGFloat = 24
     private let profileBoxSize: CGFloat = 48
     private let internalPadding: CGFloat = 16
+    private var viewModel: any ProfileViewModel
+
+    // MARK: - Internal properties
 
     var body: some View {
         ZStack {
@@ -35,18 +40,29 @@ struct ProfileSectionView: View {
                 }
                 .frame(width: profileBoxSize, height: profileBoxSize)
                 VStack(alignment: .leading) {
-                    Text("Lea")
+                    Text(viewModel.title)
                         .sheetTitleStyle()
-                    Text(PerioPresentationStrings.Settings.Profile.cta)
+                    Text(viewModel.subtitle)
                         .captionStyle()
                 }
                 Spacer()
             }
             .padding(.all, internalPadding)
         }
+        .task {
+            await viewModel.observeName()
+        }
+    }
+
+    // MARK: - Init
+
+    init(viewModel: any ProfileViewModel) {
+        self.viewModel = viewModel
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    ProfileSectionView()
+    ProfileSectionView(viewModel: StubProfileViewModel())
 }

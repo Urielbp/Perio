@@ -19,5 +19,9 @@ struct OnboardingDI {
         DIRegistry.shared.bind(service: SetPreferredNameUseCase.self) { resolver in
             SetPreferredNameUseCaseImpl(repository: resolver.resolve(PreferredNameRepository.self))
         }
+
+        DIRegistry.shared.bind(service: GetPreferredNameUseCase.self) { resolver in
+            GetPreferredNameUseCaseImpl(repository: resolver.resolve(PreferredNameRepository.self))
+        }
     }
 }

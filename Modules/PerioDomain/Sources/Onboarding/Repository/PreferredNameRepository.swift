@@ -7,5 +7,5 @@
 
 public protocol PreferredNameRepository {
     func setName(_ name: String)
-    func observeName() -> AsyncStream<String>
+    func observeName() -> AsyncStream<String?>
 }

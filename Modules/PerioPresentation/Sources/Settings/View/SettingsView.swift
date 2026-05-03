@@ -13,15 +13,15 @@ public struct SettingsView: View {
     private let verticalSectionInterSectionSpacing: CGFloat = 8.0
     private let verticalSectionSectionSpacing: CGFloat = 16.0
     private let horizontalSpacing: CGFloat = 16.0
-
-    var visualIdentityViewModel: any VisualIdentityViewModel
+    private var visualIdentityViewModel: any VisualIdentityViewModel
+    private var profileViewModel: any ProfileViewModel
 
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: verticalSectionSectionSpacing) {
                 Text(PerioPresentationStrings.Settings.title)
                     .titleStyle()
-                buildSection(title: PerioPresentationStrings.Settings.Profile.title, ProfileSectionView())
+                buildSection(title: PerioPresentationStrings.Settings.Profile.title, ProfileSectionView(viewModel: profileViewModel))
                 buildSection(title: PerioPresentationStrings.Settings.Notifications.title, NotificationSectionView())
                 buildSection(title: PerioPresentationStrings.Settings.VisualIdentity.title, VisualIdentitySectionView(viewModel: visualIdentityViewModel))
                 buildSection(title: PerioPresentationStrings.Settings.DataAndPrivacy.title, DataSectionView())
@@ -41,11 +41,16 @@ public struct SettingsView: View {
         }
     }
 
-    public init(visualIdentityViewModel: any VisualIdentityViewModel) {
+    public init(
+        visualIdentityViewModel: any VisualIdentityViewModel,
+        profileViewModel: any ProfileViewModel
+    ) {
         self.visualIdentityViewModel = visualIdentityViewModel
+        self.profileViewModel = profileViewModel
     }
 }
 
 #Preview {
-    SettingsView(visualIdentityViewModel: StubVisualIdentityViewModel())
+    SettingsView(visualIdentityViewModel: StubVisualIdentityViewModel(),
+                 profileViewModel: StubProfileViewModel())
 }

@@ -12,7 +12,7 @@ public final class UserDefaultsPreferredNameRepository: PreferredNameRepository 
 
     private let storeKey: String = "PreferredName"
     private let store: KeyValueStore
-    private var continuations: [UUID: AsyncStream<String>.Continuation] = [:]
+    private var continuations: [UUID: AsyncStream<String?>.Continuation] = [:]
 
     public func setName(_ name: String) {
         store.set(name, for: storeKey)
@@ -21,11 +21,11 @@ public final class UserDefaultsPreferredNameRepository: PreferredNameRepository 
         }
     }
 
-    public func observeName() -> AsyncStream<String> {
+    public func observeName() -> AsyncStream<String?> {
         let id = UUID()
         return AsyncStream { continuation in
             self.continuations[id] = continuation
-            continuation.yield(store.get(storeKey) ?? String())
+            continuation.yield(store.get(storeKey))
 
             continuation.onTermination = { [weak self] _ in
                 self?.continuations.removeValue(forKey: id)
