@@ -25,6 +25,8 @@ public struct OnboardingView: View {
     private let textfieldSpacing: CGFloat = 28.0
     private let horizontalSpacing: CGFloat = 16.0
 
+    public var viewModel: OnboardingViewModel
+
     public var body: some View {
         ZStack {
             RadialGradient(colors: [gradientColor, .clear],
@@ -54,17 +56,17 @@ public struct OnboardingView: View {
                     .lineSpacing(lineSpacing)
                 Spacer()
                     .frame(height: textfieldSpacing)
-                TextfieldView(title: PerioPresentationStrings.Onboarding.Textfield.title)
+                TextfieldView(title: PerioPresentationStrings.Onboarding.Textfield.title, text: viewModel.preferredNameBinding)
                 Spacer()
                 Button {
-                    print("Banana")
+                    viewModel.setPreferredName()
                 } label: {
                     Text(PerioPresentationStrings.Onboarding.mainButton)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(MainButtonStyle())
                 Button {
-                    print("Banana")
+                    viewModel.skipNameChoice()
                 } label: {
                     Text(PerioPresentationStrings.Onboarding.secondaryButton)
                         .frame(maxWidth: .infinity)
@@ -78,11 +80,11 @@ public struct OnboardingView: View {
         }
     }
 
-    public init() {
-
+    public init(viewModel: OnboardingViewModel) {
+        self.viewModel = viewModel
     }
 }
 
 #Preview {
-    OnboardingView()
+    OnboardingView(viewModel: StubOnboardingViewModel())
 }

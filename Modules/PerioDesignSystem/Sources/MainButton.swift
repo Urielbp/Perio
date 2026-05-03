@@ -9,7 +9,11 @@ import SwiftUI
 
 public struct MainButtonStyle: ButtonStyle {
 
+    // MARK: - Private properties
+
     private let cornerRadius: CGSize = .init(width: 16.0, height: 16.0)
+
+    // MARK: - Public functions
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -20,8 +24,12 @@ public struct MainButtonStyle: ButtonStyle {
             .clipShape(RoundedRectangle(cornerSize: cornerRadius))
     }
 
+    // MARK: - Init
+
     public init() { }
 }
+
+// MARK: - Preview
 
 #Preview {
     Button("Continue") {

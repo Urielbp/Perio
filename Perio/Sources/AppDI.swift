@@ -9,6 +9,7 @@
 struct AppDI {
     static func registerAll() {
         InfrastructureDI.register()
+        OnboardingDI.register()
         SettingsDI.register()
     }
 }

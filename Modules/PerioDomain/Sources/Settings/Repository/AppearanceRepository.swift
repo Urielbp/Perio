@@ -6,7 +6,6 @@
 //
 
 public protocol AppearanceRepository {
-    func getCurrentMode() -> AppearanceMode
     func setMode(_ mode: AppearanceMode)
     func observeMode() -> AsyncStream<AppearanceMode>
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct SecondaryButton: ButtonStyle {
 
+    // MARK: - Public functions
+
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .modifier(ListItemStyle())
@@ -16,8 +18,12 @@ public struct SecondaryButton: ButtonStyle {
             .foregroundStyle( PerioDesignSystemAsset.Text.inkMuted.swiftUIColor)
     }
 
+    // MARK: - Init
+
     public init() { }
 }
+
+// MARK: - Preview
 
 #Preview {
     Button("Skip for now") {

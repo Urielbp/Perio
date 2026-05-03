@@ -12,10 +12,6 @@ public final class UserDefaultsAppearanceRepository: AppearanceRepository {
     private let store: KeyValueStore
     private var continuations: [UUID: AsyncStream<AppearanceMode>.Continuation] = [:]
 
-    public func getCurrentMode() -> AppearanceMode {
-        store.get(AppearanceMode.typeName) ?? .systemSelected
-    }
-
     public func setMode(_ mode: AppearanceMode) {
         store.set(mode, for: AppearanceMode.typeName)
         for continuation in continuations.values {

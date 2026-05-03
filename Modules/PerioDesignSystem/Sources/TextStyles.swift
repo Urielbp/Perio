@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - Title modifier
+
 struct Title: ViewModifier {
     private let fontSize: CGFloat = 34
     private let letterSpacing: CGFloat = -1
@@ -18,6 +20,8 @@ struct Title: ViewModifier {
             .kerning(letterSpacing)
     }
 }
+
+// MARK: - Sheet modifier
 
 struct SheetTitle: ViewModifier {
     private let fontSize: CGFloat = 18
@@ -31,6 +35,8 @@ struct SheetTitle: ViewModifier {
     }
 }
 
+// MARK: - Section modifier
+
 struct SectionLabel: ViewModifier {
     private let fontSize: CGFloat = 11.5
     private let letterSpacing: CGFloat = 1.2
@@ -42,6 +48,8 @@ struct SectionLabel: ViewModifier {
             .kerning(letterSpacing)
     }
 }
+
+// MARK: - List item modifier
 
 struct ListItemStyle: ViewModifier {
     private let fontSize: CGFloat = 16
@@ -55,6 +63,8 @@ struct ListItemStyle: ViewModifier {
     }
 }
 
+// MARK: - BodyDescription modifier
+
 struct BodyDescription: ViewModifier {
     private let fontSize: CGFloat = 14.5
     private let letterSpacing: CGFloat = -0.2
@@ -66,6 +76,8 @@ struct BodyDescription: ViewModifier {
     }
 }
 
+// MARK: - Caption modifier
+
 struct CaptionDescription: ViewModifier {
     private let fontSize: CGFloat = 12
 
@@ -76,11 +88,15 @@ struct CaptionDescription: ViewModifier {
     }
 }
 
+// MARK: - Sheet extension
+
 extension Text {
     public func titleStyle() -> some View {
         modifier(Title())
     }
 }
+
+// MARK: - Title extension
 
 extension TextField {
     public func titleStyle() -> some View {
@@ -88,11 +104,15 @@ extension TextField {
     }
 }
 
+// MARK: - Sheet extension
+
 extension Text {
     public func sheetTitleStyle() -> some View {
         modifier(SheetTitle())
     }
 }
+
+// MARK: - Section extension
 
 extension Text {
     public func sectionLabelStyle() -> some View {
@@ -100,11 +120,15 @@ extension Text {
     }
 }
 
+// MARK: - List item extension
+
 extension Text {
     public func listItemStyle() -> some View {
         modifier(ListItemStyle())
     }
 }
+
+// MARK: - BodyDescription extension
 
 extension Text {
     public func bodyDescriptionStyle() -> some View {
@@ -112,11 +136,15 @@ extension Text {
     }
 }
 
+// MARK: - Caption extension
+
 extension Text {
     public func captionStyle() -> some View {
         modifier(CaptionDescription())
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     VStack {

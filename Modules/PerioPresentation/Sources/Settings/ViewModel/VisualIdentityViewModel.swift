@@ -58,7 +58,6 @@ final public class VisualIdentityViewModelImpl: VisualIdentityViewModel {
     ) {
         self.setAppearanceUseCase = setAppearanceUseCase
         self.getAppearanceUseCase = getAppearanceUseCase
-
     }
 
     // MARK: - Public functions

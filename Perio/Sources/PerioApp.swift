@@ -19,7 +19,7 @@ struct PerioApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
                 .preferredColorScheme(currentMode.colorScheme)
                 .task {
                     await setupAppearanceModeUse()

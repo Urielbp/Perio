@@ -9,9 +9,14 @@ import SwiftUI
 
 public struct TextfieldView: View {
 
+    // MARK: - Private properties
+
     private let title: String
     private let dividerHeight: CGFloat = 3.0
-    @State var text: String = String()
+
+    // MARK: - Public properties
+
+    @Binding public var text: String
 
     public var body: some View {
         VStack(alignment: .leading) {
@@ -27,11 +32,16 @@ public struct TextfieldView: View {
         }
     }
 
-    public init(title: String) {
+    // MARK: - Init
+
+    public init(title: String, text: Binding<String>) {
         self.title = title
+        self._text = text
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    TextfieldView(title: "YOUR NAME")
+    TextfieldView(title: "YOUR NAME", text: .constant("Lea"))
 }
